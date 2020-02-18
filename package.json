@@ -1,0 +1,28 @@
+{
+  "name": "@voliware/eventsystem",
+  "version": "1.0.1",
+  "description": "An event system with on/off/emit functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voliware/EventSystem.git"
+  },
+  "keywords": [
+    "events",
+    "event",
+    "event",
+    "system",
+    "event",
+    "emitter",
+    "emitter"
+  ],
+  "author": "Anthony Agostino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Voliware/EventSystem/issues"
+  },
+  "homepage": "https://github.com/Voliware/EventSystem#readme"
+}

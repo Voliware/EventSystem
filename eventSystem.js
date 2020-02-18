@@ -24,6 +24,23 @@ class EventSystem  {
     }
 
     /**
+     * Generate a random string
+     * @param {number} length
+     * @returns {string}
+     */
+    generateRandomString(length){
+        var s = '';
+        var randomchar = function() {
+          var n = Math.floor(Math.random() * 62);
+          if (n < 10) return n; //1-10
+          if (n < 36) return String.fromCharCode(n + 55); //A-Z
+          return String.fromCharCode(n + 61); //a-z
+        }
+        while (s.length < length) s += randomchar();
+        return s;
+    }
+
+    /**
      * Get the number of handlers for an event.
      * Will look through all namespaced events as well.
      * @param {string} event 
@@ -91,7 +108,7 @@ class EventSystem  {
      */
     one(event, callback) {
         let self = this;
-        let newEventName = event + "." + String.random(8);
+        let newEventName = event + "." + this.generateRandomString(16);
         let newCallback = function(data) {
             callback(data);
             self.off(newEventName);
@@ -170,4 +187,7 @@ class EventSystem  {
 
         return this;
     }
+}
+if(typeof module !== "undefined"){
+    module.exports = EventSystem;
 }
