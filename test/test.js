@@ -2,6 +2,8 @@ const Assert = require('assert');
 const EventSystem = require('../index');
 const es = new EventSystem();
 
+const named_handler = () => {};
+
 it('attaches a handler to an event', function() {
     es.on('test', () => {});
     Assert.strictEqual(es.getHandlersCount('test'), 1);
@@ -10,6 +12,16 @@ it('attaches a handler to an event', function() {
 it('detaches a handler from an event', function() {
     es.on('test', () => {});
     es.off('test');
+    Assert.strictEqual(es.getHandlersCount('test'), 0);
+});
+
+it('attaches a named handler to an event', function() {
+    es.on('test', named_handler);
+    Assert.strictEqual(es.getHandlersCount('test'), 1);
+});
+
+it('detaches a named handler from an event', function() {
+    es.off('test', named_handler);
     Assert.strictEqual(es.getHandlersCount('test'), 0);
 });
 
@@ -31,6 +43,13 @@ it('detaches all handlers from an event', function() {
     es.on('test.b', () => {});
     es.off('test');
     Assert.strictEqual(es.getHandlersCount('test'), 0);
+});
+
+it('detaches only namespaced handlers from an event', function() {
+    es.on('test.a', () => {});
+    es.on('test.b', () => {});
+    es.off('test', null, false);
+    Assert.strictEqual(es.getHandlersCount('test'), 2);
 });
 
 it('handles an event many times', function() {
