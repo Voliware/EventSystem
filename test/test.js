@@ -95,3 +95,29 @@ it('emits an event to namespaced handlers', function() {
     es.emit('test');
     Assert.strictEqual(v, 3);
 });
+
+it('extends an object', function() {
+    let v = 0;
+    let o = {};
+    EventSystem.extend(o);
+
+    o.on('on', () => {
+        v++;
+    });
+
+    o.emit('on');
+    Assert.strictEqual(v, 1);
+
+    o.one('one', () => {
+        v++;
+    });
+
+    o.emit('one');
+    o.emit('one');
+    Assert.strictEqual(v, 2);
+    
+    o.off('on');
+    o.emit('on');
+
+    Assert.strictEqual(v, 2);
+});

@@ -1,6 +1,6 @@
 {
   "name": "@voliware/eventsystem",
-  "version": "1.0.6",
+  "version": "1.1.2",
   "description": "An event system with on/off/emit functions",
   "main": "index.js",
   "scripts": {
